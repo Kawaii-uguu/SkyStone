@@ -18,7 +18,12 @@ import com.qualcomm.robotcore.util.Range;
 @TeleOp(name="chode", group="Linear Opmode")
 //@Disabled
 public class joji extends LinearOpMode {
-
+    //stuff
+    double lpower = 0;
+    static final int    CYCLE_MS    =   50;
+    static final double INCREMENT   = 0.01;
+    static final double MAX_FWD     =  1.0;
+    boolean turnleft  = false;
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor leftBack = null;
@@ -38,6 +43,7 @@ public class joji extends LinearOpMode {
         leftFront = hardwareMap.get(DcMotor.class, "one");
         rightBack = hardwareMap.get(DcMotor.class, "two");
         rightFront = hardwareMap.get(DcMotor.class, "zero");
+
 //the statement below can be changed if we need to do so
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
@@ -74,6 +80,7 @@ public class joji extends LinearOpMode {
             // rightPower = -gamepad1.right_stick_y ;
                 boolean mode;
                 double speed;
+
                 //multiplies speed
                 //cool concept but dpad-up will be hard to reach while using triggers and joysticks
                 //try bumpers or x button
@@ -177,7 +184,21 @@ public class joji extends LinearOpMode {
                     rightBack.setPower(speed);
                     rightFront.setPower(-speed);
                 }
+                //just a test
 
+                if (gamepad1.dpad_left == true){
+                turnleft = true;
+                }
+                while(turnleft == true){
+                  lpower += INCREMENT ;
+                  if (lpower >= MAX_LFT ) {
+                      lpower = MAX_LFT;
+                      turnleft = false;
+                      motor.setPower(0);
+                  }
+                }
+                motor.setPower(lpower);
+                sleep(CYCLE_MS);
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Motors", "left (%.2f), right (%.2f)"); //leftBack, rightBack, leftFront, rightFront);
