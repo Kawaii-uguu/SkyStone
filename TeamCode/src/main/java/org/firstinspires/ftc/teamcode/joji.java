@@ -185,7 +185,7 @@ public class joji extends LinearOpMode {
                     rightFront.setPower(-speed);
                 }
                 //just a test
-
+                //turn the robot a set amount
                 if (gamepad1.dpad_left == true){
                 turnleft = true;
                 }
