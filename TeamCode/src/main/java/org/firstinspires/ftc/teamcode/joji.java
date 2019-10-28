@@ -22,7 +22,7 @@ public class joji extends LinearOpMode {
     double lpower = 0;
     static final int    CYCLE_MS    =   50;
     static final double INCREMENT   = 0.01;
-    static final double MAX_FWD     =  1.0;
+    static final double MAX_FWD     =  5.0;
     boolean turnleft  = false;
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -194,11 +194,18 @@ public class joji extends LinearOpMode {
                   if (lpower >= MAX_LFT ) {
                       lpower = MAX_LFT;
                       turnleft = false;
-                      motor.setPower(0);
+                      leftBack.setPower(0);
+                      leftFront.setPower(0);
+                      rightFront.setPower(0);
+                      rightBack.setPower(0);
                   }
-                }
-                motor.setPower(lpower);
+                rightFront.setPower(lpower);
+                rightBack.setPower(lpower);
+                leftBack.setPower(-lpower);
+                leftFront.setPower(-lpower);
                 sleep(CYCLE_MS);
+              }
+
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Motors", "left (%.2f), right (%.2f)"); //leftBack, rightBack, leftFront, rightFront);
