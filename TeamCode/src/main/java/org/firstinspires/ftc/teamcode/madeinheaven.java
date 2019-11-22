@@ -204,6 +204,11 @@ public class madeinheaven extends LinearOpMode {
               leftFront.setPower(0);
               rightFront.setPower(0);
               rightBack.setPower(0);
+             } else {
+              leftBack.setPower(1);
+              leftFront.setPower(1);
+              rightFront.setPower(1);
+              rightBack.setPower(1);
              }
               cordist = dist.getDistance(DistanceUnit.CM) - 3;
                //     String.format(Locale.US, "%.02f", dist.getDistance(DistanceUnit.CM)));
