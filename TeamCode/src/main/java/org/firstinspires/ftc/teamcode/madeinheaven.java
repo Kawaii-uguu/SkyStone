@@ -15,6 +15,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
 /**
  * removed instructions to make this easier to navigate
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
@@ -28,11 +30,11 @@ public class madeinheaven extends LinearOpMode {
     double lpower = 0;
     static final int    CYCLE_MS    =   50;
     static final double INCREMENT   = 0.01;
-    static final double MAX_FWD     =  5.0;
+    static final double MAX_LFT     =  5.0;
     boolean turnleft  = false;
     String modestring;
     double cordist;
-    
+    boolean mode;
     //lists driving modes:
     int drivemode[]={1,2,3};
     int drivindexer = 0;
@@ -45,7 +47,7 @@ public class madeinheaven extends LinearOpMode {
     private DcMotor rightFront = null;
     
     //map the dist. sensor
-    DistanceSensor sensorDistance;
+    DistanceSensor dist;
     
     @Override
     public void runOpMode() {
@@ -59,7 +61,7 @@ public class madeinheaven extends LinearOpMode {
         leftFront = hardwareMap.get(DcMotor.class, "one");
         rightBack = hardwareMap.get(DcMotor.class, "two");
         rightFront = hardwareMap.get(DcMotor.class, "zero");
-
+        dist = hardwareMap.get(DistanceSensor.class, "ultra");
 //the statement below can be changed if we need to do so
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
@@ -74,14 +76,14 @@ public class madeinheaven extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            if drivemode[drivindexer] == 1{
+            if (drivemode[drivindexer] == 1){
               modestring = "Manual drive mode";
               // Setup a variable for each drive wheel to save power level for telemetry
               double leftPower;
               double rightPower;
               leftPower    = Range.clip(1, -1.0, 1.0) ;
               rightPower   = Range.clip(-1, -1.0, 1.0) ;
-                  boolean mode;
+
                   double speed;
                 
                   //multiplies speed
@@ -168,10 +170,10 @@ public class madeinheaven extends LinearOpMode {
                     }
                     //just a test
                     //turn the robot a set amount
-                    if (gamepad1.dpad_left == true){
+                    if (gamepad1.dpad_left){
                       turnleft = true;
                     }
-                  while(turnleft == true){
+                  while(turnleft){
                     lpower += INCREMENT ;
                     if (lpower >= MAX_LFT ) {
                         lpower = MAX_LFT;
@@ -188,7 +190,7 @@ public class madeinheaven extends LinearOpMode {
                   sleep(CYCLE_MS);
                 }
             }//mode 1 ends here
-            if (drivmode[drivindexer] == 2){
+            if (drivemode[drivindexer] == 2){
               modestring = "Distance Sensor mode";
               cordist = dist.getDistance(DistanceUnit.CM) - 3;
               //distance sensor stuff
@@ -215,23 +217,23 @@ public class madeinheaven extends LinearOpMode {
                 telemetry.update();
             
             }
-            if (drivmode[drivindexer] == 3){
-              modestring = "Empty Mode"
+            if (drivemode[drivindexer] == 3){
+              modestring = "Empty Mode";
             
             //space for new mode
             
             }
             
             //toggle drive modes
-            if (gamepad.right_bumper == true){
-              if drivindexer == 2{
+            if (gamepad1.right_bumper == true){
+              if (drivindexer == 2){
                 drivindexer = 0;
               }else{
                 drivindexer++;
               }
             }
-            if (gamepad.right_bumper == true){
-              if drivindexer == 0{
+            if (gamepad1.right_bumper == true){
+              if (drivindexer == 0){
                 drivindexer = 2;
               }else{
                 drivindexer--;
