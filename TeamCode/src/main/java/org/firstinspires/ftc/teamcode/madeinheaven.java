@@ -74,7 +74,7 @@ public class madeinheaven extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            if drivemode[drivindexer] == 0{
+            if drivemode[drivindexer] == 1{
               modestring = "Manual drive mode";
               // Setup a variable for each drive wheel to save power level for telemetry
               double leftPower;
@@ -188,7 +188,7 @@ public class madeinheaven extends LinearOpMode {
                   sleep(CYCLE_MS);
                 }
             }//mode 1 ends here
-            if (drivmode[drivindexer] == 1){
+            if (drivmode[drivindexer] == 2){
               modestring = "Distance Sensor mode";
               cordist = dist.getDistance(DistanceUnit.CM) - 3;
               //distance sensor stuff
@@ -215,7 +215,7 @@ public class madeinheaven extends LinearOpMode {
                 telemetry.update();
             
             }
-            if (drivmode[drivindexer] == 2){
+            if (drivmode[drivindexer] == 3){
               modestring = "Empty Mode"
             
             //space for new mode
