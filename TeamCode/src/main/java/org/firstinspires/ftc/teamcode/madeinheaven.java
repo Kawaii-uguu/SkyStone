@@ -188,8 +188,9 @@ public class madeinheaven extends LinearOpMode {
                   sleep(CYCLE_MS);
                 }
             }//mode 1 ends here
-            if drivmode[drivindexer] == 1{
+            if (drivmode[drivindexer] == 1){
               modestring = "Distance Sensor mode";
+              cordist = dist.getDistance(DistanceUnit.CM) - 3;
               //distance sensor stuff
               
               telemetry.addData("Distance (cm)" ,cordist);
@@ -197,12 +198,19 @@ public class madeinheaven extends LinearOpMode {
               This recalibrates the distance because our distance sensor is inaccurate. 
               You can remove this if you don't need it.
               */
+             //test loop
+             if (cordist <= 6) {
+              leftBack.setPower(0);
+              leftFront.setPower(0);
+              rightFront.setPower(0);
+              rightBack.setPower(0);
+             }
               cordist = dist.getDistance(DistanceUnit.CM) - 3;
                //     String.format(Locale.US, "%.02f", dist.getDistance(DistanceUnit.CM)));
                 telemetry.update();
             
             }
-            if drivmode[drivindexer] == 2{
+            if (drivmode[drivindexer] == 2){
               modestring = "Empty Mode"
             
             //space for new mode
@@ -210,14 +218,14 @@ public class madeinheaven extends LinearOpMode {
             }
             
             //toggle drive modes
-            if gamepad.right_bumper == true{
+            if (gamepad.right_bumper == true){
               if drivindexer == 2{
                 drivindexer = 0;
               }else{
                 drivindexer++;
               }
             }
-            if gamepad.right_bumper == true{
+            if (gamepad.right_bumper == true){
               if drivindexer == 0{
                 drivindexer = 2;
               }else{
