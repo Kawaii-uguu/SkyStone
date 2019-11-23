@@ -5,6 +5,7 @@
 <p>1.) Open a terminal window</p>
 <p>2.) Install git if you haven't already</p>
 <p>3.) type in <b>git clone https://github.com/Kawaii-uguu/SkyStone.git</b></p>
+<p>4.) Open the folder in android studio and run a gradle build.</p>
 ## NOTICE
 
 This repository contains the public FTC SDK for the SKYSTONE (2019-2020) competition season.  
