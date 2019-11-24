@@ -57,7 +57,6 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  *   - Drive forward for 48 inches
  *   - Spin right for 12 Inches
  *   - Drive Backwards for 24 inches
- *   - Stop and close the claw.
  *
  *  The code is written using a method called: encoderDrive(speed, leftInches, rightInches, timeoutS)
  *  that performs the actual movement.
@@ -71,15 +70,14 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
 @Autonomous(name="vrignen", group="Pushbot")
 //@Disabled
-public class virgin extends LinearOpMode {
-
+public class virgin extends LinearOpMode{
     /* Declare OpMode members. */
     HardwareTest robot = new HardwareTest();   // Use a Pushbot's hardware
     ElapsedTime runtime = new ElapsedTime();
     //ColorSensor colorSensor;
     static final double COUNTS_PER_MOTOR_REV = 1220;    // eg: TETRIX Motor Encoder
     static final double DRIVE_GEAR_REDUCTION = 1.0;     // This is < 1.0 if geared UP
-    static final double WHEEL_DIAMETER_INCHES = 3.75;     // For figuring circumference
+    static final double WHEEL_DIAMETER_INCHES = 2.854331;     // For figuring circumference
     static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double DRIVE_SPEED = 0.6;
     static final double TURN_SPEED = 0.5;
@@ -118,6 +116,7 @@ public class virgin extends LinearOpMode {
         encoderDrive(DRIVE_SPEED, 15, 15, 5.0);  // S1: Forward 47 Inches with 5 Sec timeout
         encoderDrive(TURN_SPEED, 6, -6, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
         encoderDrive(DRIVE_SPEED, 3, 3, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
+
         telemetry.addData("Path", "Complete");
         telemetry.update();
     }

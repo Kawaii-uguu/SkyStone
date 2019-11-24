@@ -59,7 +59,7 @@ public class Autonomus1 extends LinearOpMode {
     private DcMotor rightBack = null;
     private DcMotor rightFront = null;
 
-    DistanceSensor sensorDistance;
+    DistanceSensor dist;
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
@@ -70,7 +70,7 @@ public class Autonomus1 extends LinearOpMode {
         leftFront = hardwareMap.get(DcMotor.class, "one");
         rightBack = hardwareMap.get(DcMotor.class, "two");
         rightFront = hardwareMap.get(DcMotor.class, "zero");
-        sensorDistance = hardwareMap.get(DistanceSensor.class, "ultra");
+        dist = hardwareMap.get(DistanceSensor.class, "ultra");
 
 
 
@@ -83,10 +83,10 @@ public class Autonomus1 extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
-        double thecorrectdistancebecausetheoriginaldetectionmethodwasstupid = dist.getDistance(DistanceUnit.CM) - 3
+        double thecorrectdistancebecausetheoriginaldetectionmethodwasstupid = dist.getDistance(DistanceUnit.CM) - 3;
         while (opModeIsActive()) {
             telemetry.addData("Distance (cm)" ,thecorrectdistancebecausetheoriginaldetectionmethodwasstupid);
-            thecorrectdistancebecausetheoriginaldetectionmethodwasstupid = dist.getDistance(DistanceUnit.CM) - 3
+            thecorrectdistancebecausetheoriginaldetectionmethodwasstupid = dist.getDistance(DistanceUnit.CM) - 3;
                //     String.format(Locale.US, "%.02f", dist.getDistance(DistanceUnit.CM)));
                 telemetry.update();
         }

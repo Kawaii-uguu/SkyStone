@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.robotcontroller.external.samples.TEAMSTUFF;
+package org.firstinspires.ftc.teamcode;
 //more stuff
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
@@ -62,7 +62,7 @@ public class madeinheaven extends LinearOpMode {
         rightBack = hardwareMap.get(DcMotor.class, "two");
         rightFront = hardwareMap.get(DcMotor.class, "zero");
         dist = hardwareMap.get(DistanceSensor.class, "ultra");
-//the statement below can be changed if we need to do so
+        //the statement below can be changed if we need to do so
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery
         leftBack.setDirection(DcMotor.Direction.FORWARD);
@@ -76,7 +76,7 @@ public class madeinheaven extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            if (drivemode[drivindexer] == 1){
+            while (drivemode[drivindexer] == 1){
               modestring = "Manual drive mode";
               // Setup a variable for each drive wheel to save power level for telemetry
               double leftPower;
@@ -190,7 +190,7 @@ public class madeinheaven extends LinearOpMode {
                   sleep(CYCLE_MS);
                 }
             }//mode 1 ends here
-            if (drivemode[drivindexer] == 2){
+            while (drivemode[drivindexer] == 2){
               modestring = "Distance Sensor mode";
               cordist = dist.getDistance(DistanceUnit.CM) - 3;
               //distance sensor stuff
@@ -217,11 +217,12 @@ public class madeinheaven extends LinearOpMode {
                 telemetry.update();
             
             }
-            if (drivemode[drivindexer] == 3){
+            while (drivemode[drivindexer] == 3){
               modestring = "Empty Mode";
-            
-            //space for new mode
-            
+              leftBack.setPower(1);
+              leftFront.setPower(1);
+              rightFront.setPower(1);
+              rightBack.setPower(1);
             }
             
             //toggle drive modes
