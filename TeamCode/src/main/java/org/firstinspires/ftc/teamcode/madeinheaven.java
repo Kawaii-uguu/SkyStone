@@ -219,10 +219,10 @@ public class madeinheaven extends LinearOpMode {
             }
             while (drivemode[drivindexer] == 3){
               modestring = "Empty Mode";
-              leftBack.setPower(1);
-              leftFront.setPower(1);
-              rightFront.setPower(1);
-              rightBack.setPower(1);
+              leftBack.setPower(0);
+              leftFront.setPower(0);
+              rightFront.setPower(0);
+              rightBack.setPower(0);
             }
             
             //toggle drive modes
@@ -251,8 +251,7 @@ public class madeinheaven extends LinearOpMode {
 }
 /*
 TODO:
--find a way to add premapped automated tasks that can be run with a hotkey
--make room for sensor/servo controls
+-make room for servo controls
 -draw out the keymappings
 -stuff
 */
