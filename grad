@@ -1,0 +1,5 @@
+#!/bin/bash
+cd /home/youare/Documents/code/SkyStone-5.2
+gradle build
+gradle assembleDebug
+gradle installDebug

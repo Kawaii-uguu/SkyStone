@@ -219,6 +219,11 @@ public class madeinheaven extends LinearOpMode {
             }
             while (drivemode[drivindexer] == 3){
               modestring = "Empty Mode";
+              leftBack.setPower(1);
+              leftFront.setPower(1);
+              rightFront.setPower(1);
+              rightBack.setPower(1);
+              sleep(1000);
               leftBack.setPower(0);
               leftFront.setPower(0);
               rightFront.setPower(0);
