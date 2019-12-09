@@ -48,7 +48,24 @@ public class madeinheaven extends LinearOpMode {
     
     //map the dist. sensor
     DistanceSensor dist;
-    
+    private void brostop(){
+        leftBack.setPower(0);
+        leftFront.setPower(0);
+        rightBack.setPower(0);
+        rightFront.setPower(0);
+    }
+    private void brogo(){
+        leftBack.setPower(1);
+        leftFront.setPower(1);
+        rightBack.setPower(1);
+        rightFront.setPower(1);
+    }
+    private void bro(double x){
+        leftBack.setPower(x);
+        leftFront.setPower(x);
+        rightBack.setPower(x);
+        rightFront.setPower(x);
+    }
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
@@ -89,10 +106,10 @@ public class madeinheaven extends LinearOpMode {
                   //multiplies speed
                   //cool concept but dpad-up will be hard to reach while using triggers and joysticks
                   //try bumpers or x button
-                  if (gamepad1.dpad_up == true){
+                  if (gamepad1.dpad_up){
                     //toggle speed on
                       mode = true;
-                    }else if (gamepad1.dpad_down == true){
+                    }else if (gamepad1.dpad_down){
                      //toggle speed off
                        mode = false;
                     }
@@ -131,17 +148,11 @@ public class madeinheaven extends LinearOpMode {
                   if (gamepad1.a == true){
                       //reverses direction
                       //could be mapped to y or x if a is remapped to acceleration
-                      leftBack.setPower(-speed);
-                      leftFront.setPower(-speed);
-                      rightBack.setPower(-speed);
-                      rightFront.setPower(-speed);
+                      bro(-speed);
                   }
-                  if (gamepad1.b == true){
+                  if (gamepad1.b){
                       //multiplies speed, think (B)-dashing
-                      leftBack.setPower(speed * 2);
-                      leftFront.setPower(speed * 2);
-                      rightBack.setPower(speed * 2);
-                      rightFront.setPower(speed * 2);  
+                      bro(speed * 2);
                   }
                   if (gamepad1.left_stick_x < 0){
                        leftBack.setPower(-speed);
@@ -178,10 +189,7 @@ public class madeinheaven extends LinearOpMode {
                     if (lpower >= MAX_LFT ) {
                         lpower = MAX_LFT;
                         turnleft = false;
-                        leftBack.setPower(0);
-                        leftFront.setPower(0);
-                        rightFront.setPower(0);
-                        rightBack.setPower(0);
+                        brostop();
                     }
                   rightFront.setPower(lpower);
                   rightBack.setPower(lpower);
@@ -202,15 +210,9 @@ public class madeinheaven extends LinearOpMode {
               */
              //test loop
              if (cordist <= 6) {
-              leftBack.setPower(0);
-              leftFront.setPower(0);
-              rightFront.setPower(0);
-              rightBack.setPower(0);
+              stop();
              } else {
-              leftBack.setPower(1);
-              leftFront.setPower(1);
-              rightFront.setPower(1);
-              rightBack.setPower(1);
+              brogo();
              }
               cordist = dist.getDistance(DistanceUnit.CM) - 3;
                //     String.format(Locale.US, "%.02f", dist.getDistance(DistanceUnit.CM)));
@@ -219,26 +221,20 @@ public class madeinheaven extends LinearOpMode {
             }
             while (drivemode[drivindexer] == 3){
               modestring = "Empty Mode";
-              leftBack.setPower(1);
-              leftFront.setPower(1);
-              rightFront.setPower(1);
-              rightBack.setPower(1);
+              brogo();
               sleep(1000);
-              leftBack.setPower(0);
-              leftFront.setPower(0);
-              rightFront.setPower(0);
-              rightBack.setPower(0);
+              brostop();
             }
             
             //toggle drive modes
-            if (gamepad1.right_bumper == true){
+            if (gamepad1.right_bumper){
               if (drivindexer == 2){
                 drivindexer = 0;
               }else{
                 drivindexer++;
               }
             }
-            if (gamepad1.left_bumper == true){
+            if (gamepad1.left_bumper){
               if (drivindexer == 0){
                 drivindexer = 2;
               }else{
