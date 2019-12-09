@@ -198,8 +198,10 @@ public class madeinheaven extends LinearOpMode {
                   sleep(CYCLE_MS);
                 }
             }//mode 1 ends here
+         
             while (drivemode[drivindexer] == 2){
-              modestring = "Distance Sensor mode";
+              modestring = "Distance Sensor mode (DEPRECATED)";
+             /*
               cordist = dist.getDistance(DistanceUnit.CM) - 3;
               //distance sensor stuff
               
@@ -209,13 +211,14 @@ public class madeinheaven extends LinearOpMode {
               You can remove this if you don't need it.
               */
              //test loop
-             if (cordist <= 6) {
-              stop();
-             } else {
-              brogo();
-             }
-              cordist = dist.getDistance(DistanceUnit.CM) - 3;
-               //     String.format(Locale.US, "%.02f", dist.getDistance(DistanceUnit.CM)));
+             //if (cordist <= 6) {
+             // stop();
+             //} else {
+             // brogo();
+             //}
+             // cordist = dist.getDistance(DistanceUnit.CM) - 3;
+             //     String.format(Locale.US, "%.02f", dist.getDistance(DistanceUnit.CM)));
+             
                 telemetry.update();
             
             }
